@@ -2,6 +2,7 @@ import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
+from test_data.user_account_data import UserAccountDataGeneration
 
 
 def pytest_addoption(parser):
@@ -29,3 +30,8 @@ def browser(request):
     browser.implicitly_wait(10)
     yield browser
     browser.quit()
+
+
+@pytest.fixture(scope="function")
+def user_data() -> dict:
+    return UserAccountDataGeneration.generate_user_data()
