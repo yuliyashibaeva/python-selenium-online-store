@@ -8,3 +8,7 @@ class AccountPage(BasePage):
 
     def get_user_data(self) -> str:
         return self.browser.find_element(*AccountLocators.USER_DATA).text
+
+    def sign_out(self):
+        self.browser.find_element(*AccountLocators.CUSTOMER_MENU_TOGGLE).click()
+        self.browser.find_element(*AccountLocators.SIGN_OUT_LINK).click()

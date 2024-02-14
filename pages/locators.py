@@ -13,8 +13,12 @@ class CreateAccountLocators:
     EMAIL_ERROR = (By.ID, "email_address-error")
     PASSWORD_ERROR = (By.ID, "password-error")
     CONFIRM_PASSWORD_ERROR = (By.ID, "password-confirmation-error")
+    SAME_USER_ERROR_MESSAGE = (By.CSS_SELECTOR, "[data-ui-id='message-error']")
 
 
 class AccountLocators:
     SUCCESS_MESSAGE = (By.CLASS_NAME, "message-success")
     USER_DATA = (By.CSS_SELECTOR, ".box-information .box-content p")
+    SIGN_OUT_LINK = (By.CSS_SELECTOR, ".authorization-link > a")
+    CUSTOMER_MENU_TOGGLE = (By.CSS_SELECTOR, ".page-header [data-action='customer-menu-toggle']")
+

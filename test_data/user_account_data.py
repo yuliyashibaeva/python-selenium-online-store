@@ -35,3 +35,17 @@ class UserAccountDataGeneration:
         user_data["user_password"] = "".join(password)
 
         return user_data
+
+    @staticmethod
+    #  the method to get static user data in case there is no need to create a new one
+    #  there is a user with the following email and password on the test store
+    def get_static_user_data() -> dict:
+        user_data = {
+            'first_name': 'Alyssa',
+            'last_name': 'Cummings',
+            'full_name': 'Alyssa Cummings',
+            'user_email': 'wsnyder@example.com',
+            'user_password': 'ehJ}Da13Z='
+        }
+
+        return user_data

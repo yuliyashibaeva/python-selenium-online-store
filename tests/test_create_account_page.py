@@ -3,7 +3,9 @@ from pages.account_page import AccountPage
 import pytest
 
 
+@pytest.mark.happy_path
 class TestCreateNewUser:
+    @pytest.mark.smoke
     def test_new_user_account_should_be_created(self, browser, user_data):
         create_account_page = CreateAccountPage(browser)
         create_account_page.open(CreateAccountPage.CREATE_ACCOUNT_LINK)
@@ -28,6 +30,7 @@ class TestCreateNewUser:
              f"Expected: user name '{user_data['full_name']}', user email '{user_data['user_email']}'.")
 
 
+@pytest.mark.create_user_validations
 class TestCreateUserValidations:
     @pytest.mark.parametrize("skip_field_name", CreateAccountPage.FIELD_NAMES)
     def test_creation_new_account_without_required_field_should_cause_invalid_marker_and_error_message(self, browser, user_data, skip_field_name):
@@ -41,3 +44,19 @@ class TestCreateUserValidations:
                 and create_account_page.is_error_message_under_field_present(skip_field_name)), \
             (f"The validation didn't worked. Either the field '{skip_field_name}' "
              f"doesn't marked as invalid or there is no error message.")
+
+    def test_creation_new_account_with_same_email_should_be_prohibited(self, browser, user_data):
+        create_account_page = CreateAccountPage(browser)
+        create_account_page.open(CreateAccountPage.CREATE_ACCOUNT_LINK)
+        create_account_page.enter_user_account_data(user_data)
+        create_account_page.click_create_account_button()
+
+        account_page = AccountPage(browser)
+        account_page.sign_out()
+
+        create_account_page.open(CreateAccountPage.CREATE_ACCOUNT_LINK)
+        create_account_page.enter_user_account_data(user_data)
+        create_account_page.click_create_account_button()
+
+        assert create_account_page.is_same_user_error_message_present(), \
+            "There is no error message that a user with this email has been registered."

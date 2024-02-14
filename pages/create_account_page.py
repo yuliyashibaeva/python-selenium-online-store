@@ -25,6 +25,9 @@ class CreateAccountPage(BasePage):
     def is_error_message_under_field_present(self, field_name: str) -> bool:
         return self.is_element_present(*self.__get_error_message_locator(field_name))
 
+    def is_same_user_error_message_present(self) -> bool:
+        return self.is_element_present(*CreateAccountLocators.SAME_USER_ERROR_MESSAGE)
+
     @staticmethod
     def __get_field_locator(field_name: str) -> tuple:
         if field_name == CreateAccountPage.FIELD_NAMES[0]:
