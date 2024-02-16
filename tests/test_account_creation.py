@@ -3,9 +3,8 @@ from pages.account_page import AccountPage
 import pytest
 
 
-@pytest.mark.happy_path
+@pytest.mark.smoke
 class TestCreateNewUser:
-    @pytest.mark.smoke
     def test_new_user_account_should_be_created(self, browser, user_data):
         create_account_page = CreateAccountPage(browser)
         create_account_page.open(CreateAccountPage.CREATE_ACCOUNT_LINK)
