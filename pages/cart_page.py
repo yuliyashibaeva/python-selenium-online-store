@@ -3,6 +3,15 @@ from .locators import CartPageLocators
 
 
 class CartPage(BasePage):
+    def click_item_delete_button(self):
+        self.browser.find_element(*CartPageLocators.ITEM_DELETE_BUTTON).click()
+
+    def click_item_edit_button(self):
+        self.browser.find_element(*CartPageLocators.ITEM_EDIT_BUTTON).click()
+
+    def empty_cart_message_should_be_present(self):
+        assert self.is_element_present(*CartPageLocators.EMPTY_CART_MSG), "There is no empty cart message."
+
     def __get_product_info(self) -> dict:
         product_info = {}
         item_options = self.browser.find_elements(*CartPageLocators.ITEM_OPTIONS)
@@ -16,3 +25,8 @@ class CartPage(BasePage):
             (f"The product data in the cart isn't consistent.\n"
              f"Received: size '{product_info['size']}', color 'product_info['color']'.\n"
              f"Expected: size '{initial_size}', color '{initial_color}'.'n")
+
+    def update_items_qty(self, items_qty_new: int):
+        self.browser.find_element(*CartPageLocators.QTY_INPUT).clear()
+        self.browser.find_element(*CartPageLocators.QTY_INPUT).send_keys(items_qty_new)
+        self.browser.find_element(*CartPageLocators.UPDATE_CART_BUTTON).click()
