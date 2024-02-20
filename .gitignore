@@ -1,2 +1,3 @@
 .idea/
 test_environment/
+__pycache__/
