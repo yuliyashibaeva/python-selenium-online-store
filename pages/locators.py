@@ -4,7 +4,6 @@ from test_data.links import JUNO_JACKET_PRODUCT_PAGE_LINK
 
 class BasePageLocators:
     CART_PRODUCTS_NUMBER = (By.CLASS_NAME, "counter-number")
-    EMPTY_CART = (By.CSS_SELECTOR, "a.showcart > span.empty")
     CART_COUNTER = (By.CSS_SELECTOR, "a.showcart > span.counter")
     SUCCESS_MESSAGE = (By.CLASS_NAME, "message-success")
 
@@ -69,6 +68,7 @@ class CartPageLocators:
     ITEM_EDIT_BUTTON = (By.CLASS_NAME, "action-edit")
     ITEM_DELETE_BUTTON = (By.CLASS_NAME, "action-delete")
     EMPTY_CART_MSG = (By.CLASS_NAME, "cart-empty")
+    EMPTY_CART = (By.CSS_SELECTOR, "a.showcart > span.empty")
 
 
 class ProductEditPageLocators:

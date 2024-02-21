@@ -3,6 +3,9 @@ from .locators import CartPageLocators
 
 
 class CartPage(BasePage):
+    def cart_should_be_empty(self):
+        assert self.is_element_present(*CartPageLocators.EMPTY_CART), "The cart isn't empty."
+
     def click_item_delete_button(self):
         self.browser.find_element(*CartPageLocators.ITEM_DELETE_BUTTON).click()
 
