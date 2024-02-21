@@ -7,20 +7,22 @@ class BasePage:
     def __init__(self, browser):
         self.browser = browser
 
+    # TODO: create cart base class and product base class
+
     def cart_should_be_empty(self):
         assert self.is_element_present(*BasePageLocators.EMPTY_CART), "The cart isn't empty."
 
     @staticmethod
-    def get_locator(locator_class_name, parameter: str, property_name: str) -> tuple:
-        return getattr(locator_class_name, parameter.upper() + property_name)
+    def get_locator(locator_class_name, parameter: str) -> tuple:
+        return getattr(locator_class_name, parameter.upper())
 
     @staticmethod
     def get_color_locator(locator_class_name, parameter: str) -> tuple:
-        return BasePage.get_locator(locator_class_name, parameter, "_COLOR")
+        return BasePage.get_locator(locator_class_name, parameter + "_COLOR")
 
     @staticmethod
     def get_size_locator(locator_class_name, parameter: str) -> tuple:
-        return BasePage.get_locator(locator_class_name, parameter, "_SIZE")
+        return BasePage.get_locator(locator_class_name, parameter + "_SIZE")
 
     def get_items_qty_in_cart(self) -> int:
         self.wait_until_counter_number_is_not_empty()

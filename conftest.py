@@ -34,4 +34,6 @@ def browser(request):
 
 @pytest.fixture(scope="function")
 def user() -> User:
-    return User().generate_user_data()
+    user = User()
+    user.generate_user_data()
+    return user
