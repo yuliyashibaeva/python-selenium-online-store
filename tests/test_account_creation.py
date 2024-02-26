@@ -21,7 +21,7 @@ class TestCreateUserValidations:
     FIELD_NAMES = ["first_name", "last_name", "email", "password", "confirm_password"]
 
     @pytest.mark.parametrize("skip_field_name", FIELD_NAMES)
-    def test_create_account_without_required_field_should_cause_validation(self, browser, user, skip_field_name):
+    def test_account_creation_without_required_field_should_cause_validation(self, browser, user, skip_field_name):
         create_account_page = CreateAccountPage(browser)
         create_account_page.open(CREATE_ACCOUNT_LINK)
         create_account_page.enter_user_account_data(user)
@@ -30,7 +30,7 @@ class TestCreateUserValidations:
         create_account_page.error_message_should_be_present(skip_field_name)
         create_account_page.field_should_be_marked(skip_field_name)
 
-    def test_creation_new_account_with_same_email_should_be_prohibited(self, browser, user):
+    def test_account_creation_with_existing_user_email_should_cause_error(self, browser, user):
         create_account_page = CreateAccountPage(browser)
         create_account_page.open(CREATE_ACCOUNT_LINK)
         create_account_page.enter_user_account_data(user)
