@@ -1,4 +1,4 @@
-# Selenium WedDriver Automation Project
+# Selenium WebDriver Automation Project
 
 This is a pet project to polish up my test automation skills 
 using Python and Selenium WebDriver. As an object for automation 
